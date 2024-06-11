@@ -53,6 +53,110 @@ Perf:
 Perf constitutes a performance analysis tool tailored for Linux systems, furnishing insights into program behavior, CPU usage, cache misses, and other performance metrics. It facilitates code optimization and identification of performance bottlenecks in compiled programs.
 
 # code 
+### Example 1:
+```C
+int fact(int x)
+{
+    if(x > 1)
+    return x * fact(x - 1);
+    else
+    return 1;
+}
+void main(void)
+{
+    int x;
+    x = read();
+    if(x > 0) write (fact(x));
+}
+```
+```
+1: ID, name= int                7: reserved word: void
+1: ID, name= fact               7: ID, name= main
+1: (                            7: (
+1: ID, name= int                7: reserved word: void
+1: ID, name= x                  7: )
+1: )                            8: {
+2: {                            8: ID, name= int
+2: reserved word: if            8: ID, name= x
+2: (                            8: ;
+2: ID, name= x                  9: ID, name= x
+2: >                            9: =
+2: NUM, val= 1                  9: reserved word: read
+2: )                            9: (
+3: ID, name= return             9: )
+3: ID, name= x                  9: ;
+3: *                            10: reserved word: if
+3: ID, name= fact               10: ( 
+3: (                            10: ID, name= x
+3: ID, name= x                  10: >
+3: -                            10: NUM, val= 0
+3: NUM, val= 1                  10: )
+3: )                            10: reserved word: write
+3: ;                            10: (
+4: reserved word: else          10: ID, name= fact
+5: ID, name= return             10: (
+5: NUM, val= 1                  10: ID, name= x
+5: ;                            10: )
+6: }                            10: )
+                                10: ;
+                                11: }
+                                11: EOF
+```
+### Example 2:
+```C
+int fun(int u, int v)
+{
+    if(v == 0)
+    return u;
+    else
+    return fun(v, u - u / v * v);
+}
+void main(void)
+{
+    int x, int y;
+    x = input();
+    y = input();
+    output(gcd(x, y));
+}
+```
+```
+1: ID, name= int                      7: reserved word: void
+1: ID, name= fun                      7: ID, name= main
+1: (                                  7: (
+1: ID, name= int                      7: reserved word: void
+1: ID, name= u                        7: )
+1: ,                                  8: {
+1: ID, name= int                      8: ID, name= int
+1: ID, name= v                        8: ID, name= x
+1: )                                  8: ,
+2: {                                  8: ID, name= int
+2: reserved word: if                  8: ID, name= y
+2: (                                  8: ;
+2: ID, name= v                        9: ID, name= x
+2: =                                  9: =
+2: =                                  9: ID, name= input
+2: NUM, val = 0                       9: (
+2: )                                  9: )
+2: ID, name= return                   9: ;
+2: ID, name= u                        9: ID, name= y
+2: ;                                  9: =
+3: reserved word: else                9: ID, name= input
+3: ID, name= return                   9: (
+3: ID, name= fun                      9: )
+3: (                                  9: ;
+3: ID, name= v                        10: ID, name= output
+3: ,                                  10: (
+3: ID, name= u                        10: ID, name= gcd
+3: -                                  10: (
+3: ID, name= u                        10: ID, name= x
+3: /                                  10: ,
+3: ID, name= v                        10: ID, name= y
+3: *                                  10: )
+3: ID, name= v                        10: )
+3: )                                  10: ;
+3: ;                                  12: }
+5: }                                  12: EOF
+```
 
 # Conclusion
 After finishing this project we now have a better understanding of how the compiler works and how the tokens are printed during the Lexical Analysis.
